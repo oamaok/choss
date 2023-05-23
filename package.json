@@ -1,0 +1,32 @@
+{
+  "scripts": {
+    "start": "concurrently npm:start:server npm:start:client",
+    "start:client": "NODE_ENV=production node build",
+    "start:server": "tsnd --transpile-only --respawn server/index.ts"
+  },
+  "dependencies": {
+    "@types/koa": "^2.13.5",
+    "@types/koa-bodyparser": "^4.3.10",
+    "@types/koa-mount": "^4.0.2",
+    "@types/koa-router": "^7.4.4",
+    "@types/koa-static": "^4.0.2",
+    "@types/websocket": "^1.0.5",
+    "classnames": "^2.3.2",
+    "concurrently": "^7.6.0",
+    "cssnano": "^5.1.15",
+    "dotenv": "^16.0.3",
+    "esbuild": "0.13",
+    "kaiku": "^1.20.3",
+    "koa": "^2.14.1",
+    "koa-bodyparser": "^4.3.0",
+    "koa-mount": "^4.0.0",
+    "koa-router": "^12.0.0",
+    "koa-static": "^5.0.0",
+    "postcss": "^8.4.21",
+    "postcss-modules": "^6.0.0",
+    "prettier": "^2.8.4",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.9.5",
+    "websocket": "^1.0.34"
+  }
+}

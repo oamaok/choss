@@ -1,0 +1,52 @@
+.board {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.piece {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 50% 50%;
+}
+
+.piece.is-movable {
+  pointer-events: initial;
+}
+
+.square {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.square.light {
+  background-color: #ffce9e;
+}
+
+.square.dark {
+  background-color: #d18b47;
+}
+
+.legal-move-marker {
+  display: none;
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  background-color: #55826d;
+  position: relative;
+  z-index: 1000;
+}
+
+.legal-move .legal-move-marker {
+  display: block;
+}
