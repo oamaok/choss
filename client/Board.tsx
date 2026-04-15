@@ -1,12 +1,9 @@
-import { h, immutable } from 'kaiku'
 import {
-  applyMove,
   getLegalMovesForPiece,
   getMoveTargetSquare,
   isCheckForSide,
   isCheckmateForSide,
   isSameSquare,
-  isStalemateForSide,
   Move,
   Piece,
   Board,
@@ -14,7 +11,7 @@ import {
 } from '../common/gameRules'
 import * as connection from './connection'
 import { getPlayerSide, isPlayersTurn, state } from './state'
-import css from './Board.css'
+import styles from './Board.scss'
 
 type SquareProps = {
   square: Square
@@ -26,9 +23,9 @@ const Square = ({ square, move }: SquareProps) => {
 
   return (
     <div
-      className={css('square', (square.x + square.y) % 2 ? 'light' : 'dark', {
-        'legal-move': move,
-      })}
+      className={[styles.square, (square.x + square.y) % 2 ? styles.light : styles.dark, {
+        [styles.legalMove!]: move,
+      }]}
       onClick={() => {
         if (move) {
           connection.playMove(move)
@@ -36,7 +33,7 @@ const Square = ({ square, move }: SquareProps) => {
         state.selectedPiece = null
       }}
     >
-      <div className={css('legal-move-marker')} />
+      <div className={styles.legalMoveMarker} />
     </div>
   )
 }
@@ -56,9 +53,9 @@ const Piece = ({ piece, board }: PieceProps) => {
 
   return (
     <div
-      className={css('piece', {
-        'is-movable': piece.side === board.turn,
-      })}
+      className={[styles.piece, {
+        [styles.isMovable!]: piece.side === board.turn,
+      }]}
       style={{
         transform: `translate(${piece.square.x * 100}px, ${offsetY}px)`,
         backgroundImage: `url(/assets/${piece.name}.svg)`,
@@ -66,7 +63,7 @@ const Piece = ({ piece, board }: PieceProps) => {
       }}
       onClick={() => {
         if (isPlayersTurn()) {
-          state.selectedPiece = immutable(piece)
+          state.selectedPiece = piece
         }
       }}
     ></div>
@@ -93,9 +90,11 @@ const Board = ({ board }: BoardProps) => {
       }
   }
 
+  console.time('legalmove')
   const legalMoves = state.selectedPiece
     ? getLegalMovesForPiece(state.selectedPiece, board)
     : []
+  console.timeEnd('legalmove')
 
   return (
     <div>
@@ -106,7 +105,7 @@ const Board = ({ board }: BoardProps) => {
       <p>Check: {isCheckForSide(board.turn, board).toString()}</p>
       <p>Checkmate: {isCheckmateForSide(board.turn, board).toString()}</p>
       <div
-        className={css('board')}
+        className={styles.board}
         style={{
           width: `${board.width * 100}px`,
           height: `${board.height * 100}px`,

@@ -1,4 +1,3 @@
-import { immutable } from 'kaiku'
 import { Move } from '../common/gameRules'
 import { ClientMessage, ServerMessage } from '../common/messages'
 import { state } from './state'
@@ -56,7 +55,7 @@ connection.addEventListener('message', ({ data }) => {
     }
 
     case 'game-update': {
-      state.game = immutable(message.game)
+      state.game = message.game
       break
     }
   }

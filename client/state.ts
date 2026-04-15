@@ -1,5 +1,4 @@
-import { createState, immutable } from 'kaiku'
-import { DEFAULT_CHESS } from '../common/boardSetups'
+import { createShallowState } from 'kaiku'
 import { Board, Piece } from '../common/gameRules'
 import { Game } from '../common/messages'
 
@@ -10,14 +9,18 @@ type AppState = {
   selectedPiece: Piece | null
 }
 
+/*
 const UUID_KEY = 'choss-uuid'
 const uuid = localStorage.getItem(UUID_KEY) ?? crypto.randomUUID()
 localStorage.setItem(UUID_KEY, uuid)
+*/
+
+const uuid = crypto.randomUUID()
 
 const gameId =
   new URLSearchParams(location.search.substring(1)).get('g') ?? null
 
-export const state = createState<AppState>({
+export const state = createShallowState<AppState>({
   uuid,
   gameId,
   game: null,

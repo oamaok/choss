@@ -1,7 +1,7 @@
 {
   "scripts": {
     "start": "concurrently npm:start:server npm:start:client",
-    "start:client": "NODE_ENV=production node build",
+    "start:client": "node build.mjs --watch",
     "start:server": "tsnd --transpile-only --respawn server/index.ts"
   },
   "dependencies": {
@@ -15,8 +15,9 @@
     "concurrently": "^7.6.0",
     "cssnano": "^5.1.15",
     "dotenv": "^16.0.3",
-    "esbuild": "0.13",
-    "kaiku": "^1.20.3",
+    "esbuild": "^0.24.0",
+    "esbuild-sass-plugin": "^3.3.1",
+    "kaiku": "^1.26.1",
     "koa": "^2.14.1",
     "koa-bodyparser": "^4.3.0",
     "koa-mount": "^4.0.0",

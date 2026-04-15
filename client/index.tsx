@@ -1,4 +1,4 @@
-import { h, render } from 'kaiku'
+import { render } from 'kaiku'
 import Board from './Board'
 import { state } from './state'
 import * as connection from './connection'

@@ -17,7 +17,7 @@
   background-position: 50% 50%;
 }
 
-.piece.is-movable {
+.piece.isMovable {
   pointer-events: initial;
 }
 
@@ -37,7 +37,7 @@
   background-color: #d18b47;
 }
 
-.legal-move-marker {
+.legalMoveMarker {
   display: none;
   width: 33px;
   height: 33px;
@@ -47,6 +47,6 @@
   z-index: 1000;
 }
 
-.legal-move .legal-move-marker {
+.legalMove .legalMoveMarker {
   display: block;
 }

@@ -20,7 +20,8 @@ const apiRouter = new Router<any, KoaContext>()
 app
   .use(bodyparser())
   .use(mount('/api', apiRouter.middleware()))
-  .use(mount('/', serve('./dist')))
+  .use(mount('/', serve('./client/public/')))
+  .use(mount('/', serve('./dist/')))
   .use((ctx) => {
     ctx.response.set('content-type', 'text/html')
     ctx.body = fs.createReadStream('./dist/index.html')
@@ -115,9 +116,7 @@ ws.on('request', (request) => {
             // TODO: More handling for invalid moves?
             break
           }
-
           game.board = applyMove(message.move, game.board)
-
           for (const conn of connections) {
             sendMessage(conn, {
               type: 'game-update',
